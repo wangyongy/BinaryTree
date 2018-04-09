@@ -84,16 +84,36 @@ class BinaryTree: NSObject {
             }
         }
     }
+
+    //深度
     func depth() -> Int {
 
        return 1 + max((leftTree != nil ? leftTree!.depth() : 0), (rightTree != nil ? rightTree!.depth() : 0))
     }
 
+    //所有节点数
     func length() -> Int {
 
         return 1 + (leftTree != nil ? leftTree!.length() : 0) + (rightTree != nil ? rightTree!.length() : 0)
     }
-    
+
+    //满二叉树所有节点数
+    func maxLength() -> Int {
+
+        var depth = self.depth()
+
+        var maxLength = 0
+
+        while depth > 0 {
+
+            maxLength = (maxLength) + Int(pow(2.0,Double(depth - 1)))
+
+            depth = depth - 1;
+        }
+
+        return maxLength
+    }
+
     func reverse() {
 
         let tempRightTree = rightTree

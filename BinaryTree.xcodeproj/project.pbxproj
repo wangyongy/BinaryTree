@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		390C7668207B050700B55013 /* BinaryTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390C7667207B050700B55013 /* BinaryTreeView.swift */; };
 		390DCA582079FD1A0091C40E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390DCA572079FD1A0091C40E /* AppDelegate.swift */; };
 		390DCA5A2079FD1A0091C40E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390DCA592079FD1A0091C40E /* ViewController.swift */; };
 		390DCA5D2079FD1A0091C40E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 390DCA5B2079FD1A0091C40E /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		390C7667207B050700B55013 /* BinaryTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeView.swift; sourceTree = "<group>"; };
 		390DCA542079FD1A0091C40E /* BinaryTree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinaryTree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		390DCA572079FD1A0091C40E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		390DCA592079FD1A0091C40E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			children = (
 				390DCA572079FD1A0091C40E /* AppDelegate.swift */,
 				390DCA592079FD1A0091C40E /* ViewController.swift */,
+				390C7667207B050700B55013 /* BinaryTreeView.swift */,
 				390DCA852079FD740091C40E /* BinaryTree.swift */,
 				39BEE5CA207A22A300364E36 /* OCBinaryTree.h */,
 				39BEE5CB207A22A300364E36 /* OCBinaryTree.m */,
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				390C7668207B050700B55013 /* BinaryTreeView.swift in Sources */,
 				390DCA5A2079FD1A0091C40E /* ViewController.swift in Sources */,
 				390DCA582079FD1A0091C40E /* AppDelegate.swift in Sources */,
 				390DCA862079FD740091C40E /* BinaryTree.swift in Sources */,

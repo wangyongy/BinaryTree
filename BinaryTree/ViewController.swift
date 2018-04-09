@@ -8,39 +8,68 @@
 
 import UIKit
 
+func Screen_width()->CGFloat{
+
+    return UIScreen.main.bounds.size.width//屏幕宽度
+}
+
+func Screen_height()->CGFloat{
+
+    return UIScreen.main.bounds.size.height//屏幕高度
+}
+
+func statusBarHeight()->CGFloat{
+
+    return UIApplication.shared.statusBarFrame.height//状态栏高度
+}
 class ViewController: UIViewController {
 
-    var tree : BinaryTree?
+    var swiftTree : BinaryTree?
+
     var ocTree : OCBinaryTree?
 
+    let treeView = BinaryTreeView(frame: CGRect(x: 0, y: statusBarHeight(), width: Screen_width(), height: Screen_height() - statusBarHeight()))
+
     override func viewDidLoad() {
+
         super.viewDidLoad()
 
         createBinaryTree()
+
+        view.backgroundColor = UIColor.white
+
+        treeView.backgroundColor = UIColor.white
+
+        view.addSubview(treeView)
         // Do any additional setup after loading the view, typically from a nib.
     }
+
     func createBinaryTree() {
 
+        treeView.binaryTree = nil
+
+        treeView.setNeedsDisplay()
+      
         let dic = NSMutableDictionary()
 
-        for _ in 0...20 {
+        let maxNumber: UInt32 = 15
 
-            let num = NSNumber.init(value: arc4random()%20 + 1)
+        for _ in 0...maxNumber {
+
+            let num = NSNumber.init(value: arc4random()%maxNumber + 1)
 
             dic.setValue(num, forKey: String.init(format: "%@", num as CVarArg))
         }
 
-        print(dic.allValues)
+        swiftTree = BinaryTree.create(array: dic.allValues as NSArray)
 
-        tree = BinaryTree.create(array: dic.allValues as NSArray)
+        swiftTree?.printSelf()
 
-        tree?.printSelf()
-
-        tree?.reverse()
+        swiftTree?.reverse()
 
         print("\n\n==========反转二叉树==========");
         
-        tree?.printSelf()
+        swiftTree?.printSelf()
 
         print("\n\n====================OC=======================");
 
@@ -53,8 +82,31 @@ class ViewController: UIViewController {
         print("\n\n==========反转二叉树==========");
 
         ocTree?.print()
+
+        showBinaryTree(tree: swiftTree!)
+    }
+    /*
+     * 把OCBinaryTree转化成BinaryTree
+     */
+    func convertTree(tree:OCBinaryTree) -> BinaryTree {
+
+        let binaryTree = BinaryTree()
+
+        binaryTree.value = tree.value
+
+        binaryTree.leftTree = tree.left != nil ? convertTree(tree: tree.left) : nil
+
+        binaryTree.rightTree = tree.right != nil ? convertTree(tree: tree.right) : nil
+
+        return binaryTree
     }
 
+    func showBinaryTree(tree:BinaryTree) {
+
+        treeView.showTreeView(tree: tree)
+    }
+
+    // MARK:action
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
         print("reset")

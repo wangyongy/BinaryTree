@@ -113,6 +113,21 @@
 {
     return 1 + MAX(self.leftTree.depth, self.rightTree.depth);
 }
+- (NSInteger)maxLength
+{
+    NSInteger depth = self.length;
+
+    NSInteger maxLength = 0;
+
+    while (depth) {
+
+        maxLength += pow(2, depth - 1);
+
+        depth--;
+    }
+    return maxLength;
+}
+
 - (void)reverse
 {
     OCBinaryTree * right = self.rightTree;
