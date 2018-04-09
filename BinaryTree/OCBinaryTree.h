@@ -22,6 +22,8 @@
 
 - (NSInteger)length;   //所有节点的个数
 
+- (NSInteger)maxLength;//满二叉树所有节点数
+
 - (void)print;       //打印基本信息
 
 - (void)prePrint;    //先序遍历
