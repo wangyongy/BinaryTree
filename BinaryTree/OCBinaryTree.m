@@ -77,7 +77,11 @@
 {
     printf("\nlength:%zd    depth:%zd\n",self.length,self.depth);
 
-    printf("先序遍历:\n");
+    printf("广度优先遍历:\n");
+
+    [self BFSPrint];
+
+    printf("\n先序遍历:\n");
 
     [self prePrint];
 
@@ -93,7 +97,7 @@
 
     [self midPrintWithoutRecursion];
 
-    printf("\n后序遍历\n");
+    printf("\n后序遍历:\n");
 
     [self sufPrint];
 
@@ -139,6 +143,32 @@
     [self.leftTree reverse];
 
     [self.rightTree reverse];
+}
+
+- (void)BFSPrint    //广度优先遍历:Breadth First Search
+{
+    NSMutableArray <OCBinaryTree *>* treeArray = [NSMutableArray array];
+
+    [treeArray addObject:self];
+
+    while (treeArray.count > 0) {
+
+        OCBinaryTree * tree = treeArray.firstObject;
+
+        printf(" %zd ",tree.value);
+
+        [treeArray removeObjectAtIndex:0];
+
+        if (tree.leftTree){
+
+            [treeArray addObject:tree.leftTree];
+        }
+
+        if (tree.rightTree){
+
+            [treeArray addObject:tree.rightTree];
+        }
+    }
 }
 - (void)prePrint    //先序遍历
 {

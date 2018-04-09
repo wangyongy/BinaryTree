@@ -13,12 +13,11 @@ var heightKey = 103
 
 extension BinaryTree{
 
-    //在满二叉树下从左到右的编号，即满二叉树中序遍历下的序号,以root结点为参照,比如3层满二叉树，number为4，故不可用递归
+    //在满二叉树下从左到右的编号，即满二叉树中序遍历下的序号,以树根为参照,比如3层满二叉树，树根结点number为4，故不可用递归
     var number: Int {
         set {
             objc_setAssociatedObject(self, &numberKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
         }
-
         get {
             if let num = objc_getAssociatedObject(self, &numberKey) as? Int {
                 return num
@@ -26,13 +25,11 @@ extension BinaryTree{
             return 0
         }
     }
-
-    //在root二叉树下该结点的层级,根节点为depth
+    //在二叉树下该结点的层级,最上层结点为depth
     var height: Int {
         set {
             objc_setAssociatedObject(self, &heightKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
         }
-
         get {
             if let h = objc_getAssociatedObject(self, &heightKey) as? Int {
                 return h
@@ -57,36 +54,28 @@ extension BinaryTree{
 
                 treeArray.add(tree!)
 
-                let num = tree!.number
+                if tree!.leftTree != nil {
 
-                let h = tree!.height
+                    tree!.leftTree!.height = tree!.height - 1
+
+                    tree!.leftTree!.number = tree!.number - Int(pow(2.0, CGFloat(tree!.height - 2)))
+                }
 
                 tree = tree!.leftTree
-
-                if tree != nil {
-
-                    tree!.height = h - 1
-
-                    tree!.number = num - Int(pow(2.0, CGFloat(tree!.height - 1)))
-                }
             }
 
             if treeArray.count > 0 {
 
                 tree = (treeArray.lastObject as! BinaryTree)
 
-                let num = tree!.number
+                if tree!.rightTree != nil {
 
-                let h = tree!.height
+                    tree!.rightTree!.height = tree!.height - 1
 
-                tree = tree?.rightTree
-
-                if tree != nil {
-
-                    tree!.height = h - 1
-
-                    tree!.number = num + Int(pow(2.0, CGFloat(tree!.height - 1)))
+                    tree!.rightTree!.number = tree!.number + Int(pow(2.0, CGFloat(tree!.height - 2)))
                 }
+
+                tree = tree!.rightTree
 
                 treeArray.removeLastObject()
             }
@@ -123,9 +112,9 @@ class BinaryTreeView: UIView {
 
         eachWidth = (viewHeight! - radius*2)/CGFloat(tree.maxLength())
 
-//        radius = min(10, (viewHeight! - radius*2)/CGFloat(pow(2, CGFloat(tree.depth())))) //层级过多，节点过多时，可能会有重叠问题
-
         eachHeight = (Screen_width() - radius*2)/CGFloat(tree.depth())
+
+//        radius = min(10, (viewHeight! - radius*2)/CGFloat(pow(2, CGFloat(tree.depth())))) //层级过多，节点过多时，可能会有重叠问题
 
         path.lineWidth = 1
 

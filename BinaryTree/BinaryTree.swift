@@ -116,16 +116,15 @@ class BinaryTree: NSObject {
 
     func reverse() {
 
-        let tempRightTree = rightTree
+        let right = rightTree
 
         rightTree = leftTree
 
-        leftTree = tempRightTree
+        leftTree = right
 
         leftTree?.reverse()
 
         rightTree?.reverse()
-
     }
     /*
      *  打印详情
@@ -134,7 +133,11 @@ class BinaryTree: NSObject {
 
         print("length:\(length())    depth:\(depth())")
 
-        print("先序遍历:");
+        print("广度优先遍历:");
+
+        BFSPrint()
+
+        print("\n先序遍历:");
 
         prePrint()
 
@@ -162,6 +165,34 @@ class BinaryTree: NSObject {
 
         sufPrintWithoutRecursionAndParam()
 
+    }
+    /*
+     *  广度优先遍历:Breadth First Search
+     */
+    func BFSPrint() {
+
+        let treeArray = NSMutableArray()
+
+        treeArray.add(self)
+
+        while (treeArray.count > 0) {
+
+            let tree = treeArray.firstObject as! BinaryTree
+
+            print(" \(tree.value) ", terminator: "")
+
+            treeArray.removeObject(at: 0)
+
+            if tree.leftTree != nil{
+
+                treeArray.add(tree.leftTree!)
+            }
+
+            if tree.rightTree != nil{
+
+                treeArray.add(tree.rightTree!)
+            }
+        }
     }
     /*
      *  先序遍历
@@ -220,7 +251,7 @@ class BinaryTree: NSObject {
 
                 tree = (treeArray.lastObject as! BinaryTree)
 
-                tree = tree?.rightTree
+                tree = tree!.rightTree
 
                 treeArray.removeLastObject()
             }
@@ -250,7 +281,7 @@ class BinaryTree: NSObject {
 
                 print(" \(tree!.value) ", terminator: "")
 
-                tree = tree?.rightTree
+                tree = tree!.rightTree
 
                 treeArray.removeLastObject()
             }

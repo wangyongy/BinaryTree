@@ -12,11 +12,11 @@
 
 @property (nonatomic, assign) NSInteger value;
 
-@property (nonatomic, assign) BOOL isNotFirst;
-
 @property (nonatomic, strong) OCBinaryTree * leftTree;
 
 @property (nonatomic, strong) OCBinaryTree * rightTree;
+
+@property (nonatomic, assign) BOOL isNotFirst;
 
 - (NSInteger)depth;    //深度
 
@@ -25,6 +25,8 @@
 - (NSInteger)maxLength;//满二叉树所有节点数
 
 - (void)print;       //打印基本信息
+
+- (void)BFSPrint;    //广度优先遍历:Breadth First Search
 
 - (void)prePrint;    //先序遍历
 

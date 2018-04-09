@@ -46,10 +46,6 @@ class ViewController: UIViewController {
 
     func createBinaryTree() {
 
-        treeView.binaryTree = nil
-
-        treeView.setNeedsDisplay()
-      
         let dic = NSMutableDictionary()
 
         let maxNumber: UInt32 = 15
@@ -64,6 +60,8 @@ class ViewController: UIViewController {
         swiftTree = BinaryTree.create(array: dic.allValues as NSArray)
 
         swiftTree?.printSelf()
+
+        showBinaryTree(tree: swiftTree!)    //在反转前将其绘制到屏幕上
 
         swiftTree?.reverse()
 
@@ -82,8 +80,6 @@ class ViewController: UIViewController {
         print("\n\n==========反转二叉树==========");
 
         ocTree?.print()
-
-        showBinaryTree(tree: swiftTree!)
     }
     /*
      * 把OCBinaryTree转化成BinaryTree
